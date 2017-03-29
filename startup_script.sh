@@ -5,22 +5,26 @@
 git clone --recursive 'https://github.com/tenebrousedge/prezto' "$HOME"/.zprezto
 
 # the way prezto does this is much more elegant. This should be more robust.
-ZSH_DOTFILES=('zshrc' 'zshenv' 'zshlogin' 'zshlogout' 'zprofile' 'zpreztorc')
-for dotfile in "$ZSH_DOTFILES"; do echo "$HOME/.zprezto/runcoms/$dotfile" "$HOME/.$dotfile"; done
+declare -a ZSH_DOTFILES=('zshrc' 'zshenv' 'zshlogin' 'zshlogout' 'zprofile' 'zpreztorc')
+for dotfile in "${ZSH_DOTFILES[@]}"; do ln -s "$HOME/.zprezto/runcoms/$dotfile" "$HOME/.$dotfile"; done
+
+# Make zsh the login shell
+
+echo '[ -f /bin/zsh ] && exec /bin/zsh -l' >> "$HOME/.profile"
 
 # clone the repo creator
-exec_dir="$HOME/bin"
-if [[ ! -d "$exec_dir"]]; then
+exec_dir="$HOME/.local/bin"
+if [[ ! -d "$exec_dir" ]]; then
 mkdir "$exec_dir"
 fi
 
-np_dir = "$HOME/new_project_script"
+np_dir="$HOME/new_project_script"
 git clone 'https://github.com/tenebrousedge/new_project_script' "$np_dir"
 ln -s "$np_dir/repo_init.sh" "$exec_dir/new_project" 
 # set up nano
 
 git clone 'https://github.com/scopatz/nanorc' "$HOME"/.nano
-cat "$HOME/.nano/nanorc" >> "$HOME/.nanorc"
+mv "$HOME/.nano/nanorc" "$HOME/.nanorc"
 
 # git config
 
@@ -55,10 +59,7 @@ npm install 'eslint'
 apm install 'file-icons'
 apm install 'linter-csslint'
 apm install 'linter-eslint'
-apm install 'minimap'
-apm install 'minimap-hide'
 apm install 'highlight-selected'
-apm install 'minimap-highlight-selected'
 apm install 'autoclose-html'
 apm install 'pigments'
 
@@ -66,7 +67,7 @@ apm install 'pigments'
 
 export CDPATH="$HOME"/Desktop
 ## n.b. PATH is normally set in one's bashrc or zshrc. This script sets it here for reasons.
-if [[ !":$PATH:" == *":$HOME/bin:"* ]]; then
+if [[ !":$PATH:" == *":$HOME/.local/bin:"* ]]; then
 export PATH="$PATH:$exec_dir"
 fi
 exit 0
