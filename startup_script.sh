@@ -14,11 +14,11 @@ echo '[ -f /bin/zsh ] && exec /bin/zsh -l' >> "$HOME/.profile"
 
 # clone the repo creator
 exec_dir="$HOME/.local/bin"
-if [[ ! -d "$exec_dir" ]]; then
+if [[ ! -d "$exec_dir"]]; then
 mkdir "$exec_dir"
 fi
 
-np_dir="$HOME/new_project_script"
+np_dir = "$HOME/new_project_script"
 git clone 'https://github.com/tenebrousedge/new_project_script' "$np_dir"
 ln -s "$np_dir/repo_init.sh" "$exec_dir/new_project" 
 # set up nano
