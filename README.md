@@ -7,7 +7,7 @@ This is a shell script which is intended to set up a new workstation with some u
 So generally you just need to drop this somewhere and run it.
 
 * clone the repo: `git clone https://github.com/tenebrousedge/epicodus-startscript ~/startscript`
-* run the script by typing `~/startscript/startup_script.sh`
+* **source** the script by typing `. ~/startscript/startup_script.sh`
 * get coffee, this may take a few minutes
 * type `zsh`
 
