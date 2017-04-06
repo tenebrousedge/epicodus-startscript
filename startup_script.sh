@@ -23,6 +23,7 @@ git clone 'https://github.com/tenebrousedge/new_project_script' "$np_dir"
 ln -s "$np_dir/repo_init.sh" "$exec_dir/new_project" 
 # set up nano
 
+(brew install nano >/dev/null 2>&1)
 git clone 'https://github.com/scopatz/nanorc' "$HOME"/.nano
 mv "$HOME/.nano/nanorc" "$HOME/.nanorc"
 
@@ -52,7 +53,7 @@ EOM
 
 # npm
 
-npm install 'eslint'
+npm install -g 'eslint'
 
 # atom config
 
@@ -67,7 +68,8 @@ apm install 'pigments'
 
 export CDPATH="$HOME"/Desktop
 ## n.b. PATH is normally set in one's bashrc or zshrc. This script sets it here for reasons.
-if [[ !":$PATH:" == *":$HOME/.local/bin:"* ]]; then
+if [[ !":$PATH:" == *":$exec_dir:"* ]]; then
 export PATH="$PATH:$exec_dir"
 fi
-exit 0
+
+return 0
