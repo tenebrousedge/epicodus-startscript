@@ -15,7 +15,7 @@ echo '[ -f /bin/zsh ] && exec /bin/zsh -l' >> "$HOME/.profile"
 # clone the repo creator
 exec_dir="$HOME/.local/bin"
 if [[ ! -d "$exec_dir" ]]; then
-mkdir "$exec_dir"
+mkdir -p "$exec_dir"
 fi
 
 np_dir="$HOME/new_project_script"
