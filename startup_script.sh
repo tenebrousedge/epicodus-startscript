@@ -11,7 +11,7 @@ for dotfile in "${ZSH_DOTFILES[@]}"; do ln -s "$HOME/.zprezto/runcoms/$dotfile" 
 
 # Make zsh the login shell
 # Using $HOME/.profile didn't seem to work?
-echo '[ -f /bin/zsh ] && exec /bin/zsh -l' >> "$HOME/.bashrc"
+echo '[ -f /bin/zsh ] && exec /bin/zsh -l' >> "$HOME/.bash_profile"
 
 # Specification:
 # https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
@@ -29,7 +29,7 @@ fi
 # clone the repo creator
 np_dir="$data_home/new_project_script"
 git clone 'https://github.com/tenebrousedge/new_project_script' "$np_dir"
-ln -s "$np_dir/repo_init.sh" "$exec_dir/new_project" 
+ln -s "$np_dir/repo_init.sh" "$exec_dir/new_project"
 # set up nano
 
 brew install nano >/dev/null
