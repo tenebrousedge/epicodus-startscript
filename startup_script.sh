@@ -3,7 +3,7 @@
 # clone prezto
 
 echo "Installing Prezto"
-git clone --recursive 'https://github.com/tenebrousedge/prezto' "$HOME"/.zprezto > /dev/null
+git clone --recursive 'https://github.com/tenebrousedge/prezto' "$HOME"/.zprezto >/dev/null 2>&1
 
 # the way prezto does this is much more elegant. This should be more robust.
 declare -a ZSH_DOTFILES=('zshrc' 'zshenv' 'zshlogin' 'zshlogout' 'zprofile' 'zpreztorc')
@@ -46,7 +46,7 @@ git config --global 'alias.ignored' '!git ls-files -v | grep "^h\"'
 
 # git hooks
 
-curl 'http://pre-commit.com/install-local.py' | python >/dev/null
+curl 'http://pre-commit.com/install-local.py' | python >/dev/null 2>&1 
 
 cat >>"$HOME"/.pre-commit-config.yaml <<'EOM'
 -   repo: git://github.com/pre-commit/pre-commit-hooks
@@ -55,9 +55,13 @@ cat >>"$HOME"/.pre-commit-config.yaml <<'EOM'
     -   id: trailing-whitespace
     -   id: check-byte-order-marker
 -   repo: git://github.com/pre-commit/mirrors-eslint
-    sha: 3.14.0
+    sha: 5bf6c09bfa1297d3692cadd621ef95f1284e33c0
     hooks:
     -   id: eslint
+-   repo: git://github.com/pre-commit/mirrors-csslint
+    sha: 818b64c6bf19ca1e089b4dabc8dc74059b405814
+    hooks:
+    -   id: csslint
 EOM
 
 # npm
