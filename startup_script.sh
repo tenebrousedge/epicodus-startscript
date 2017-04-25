@@ -29,7 +29,8 @@ fi
 # clone the repo creator
 np_dir="$data_home/new_project_script"
 git clone 'https://github.com/tenebrousedge/new_project_script' "$np_dir"
-ln -s "$np_dir/repo_init.sh" "$exec_dir/new_project"
+ln -s "$np_dir/repo_init.sh" "$exec_dir/new_project" 
+ln -s "$np_dir/new_ruby_project.sh" "$exec_dir/new_ruby_project"
 # set up nano
 
 brew install nano >/dev/null
@@ -76,6 +77,11 @@ apm install 'linter-eslint'
 apm install 'highlight-selected'
 apm install 'autoclose-html'
 apm install 'pigments'
+apm install 'linter-ruby'
+
+# gems
+
+gem install rubocop
 
 # environment
 
